@@ -54,6 +54,7 @@
                 android:text="Total Income:" />
 
             <TextView
+                android:id="@+id/totalincome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_total_income"
@@ -73,6 +74,7 @@
                 android:text="Current Balance:" />
 
             <TextView
+                android:id="@+id/currentbalance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_total_income"
@@ -92,6 +94,7 @@
                 android:text="Net Spending" />
 
             <TextView
+                android:id="@+id/netspending"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_total_income"
