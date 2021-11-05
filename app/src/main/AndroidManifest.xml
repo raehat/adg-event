@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ADGEvent">
         <activity
+            android:name=".AddnewActivity"
+            android:exported="true" />
+        <activity
             android:name=".FirstPage"
             android:exported="true">
             <intent-filter>
