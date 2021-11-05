@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,11 +21,20 @@ public class FirstPage extends AppCompatActivity {
     private ImageView imageViewPlusSign;
     private ArrayList<ItemModel> list;
     private ItemAdapter adapter;
+    private TextView totalincome,currentbalance,netspending;
+    private int ti,cb,ns;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_page);
+
+        totalincome = findViewById(R.id.totalincome);
+        currentbalance = findViewById(R.id.currentbalance);
+        netspending = findViewById(R.id.netspending);
+
+        totalincome.setText("2000");
+        ti = 2000;
 
         SharedPreferences sharedPreferences = getSharedPreferences("sharedpref", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -39,6 +49,10 @@ public class FirstPage extends AppCompatActivity {
         if(list == null)
         {
             list = new ArrayList<>();
+            cb = 2000;
+            ns = 0;
+            currentbalance.setText(Integer.toString(cb));
+            netspending.setText(Integer.toString(ns));
         }
 
         imageViewPlusSign.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +100,10 @@ public class FirstPage extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("sharedpref",MODE_PRIVATE);
         if(!sharedPreferences.getString("name","").equals("") && sharedPreferences.getInt("cost",0) != 0) {
             additem(sharedPreferences.getString("name",""),sharedPreferences.getInt("cost",0));
+            ns += sharedPreferences.getInt("cost",0);
+            cb -= sharedPreferences.getInt("cost",0);
+            currentbalance.setText(Integer.toString(cb));
+            netspending.setText(Integer.toString(ns));
         }
     }
 }
