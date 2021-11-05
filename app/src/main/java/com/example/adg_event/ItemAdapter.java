@@ -1,6 +1,7 @@
 package com.example.adg_event;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,11 +30,17 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewModel> {
     @Override
     public void onBindViewHolder(@NonNull ItemViewModel holder, int position) {
         holder.textViewGroceryName.setText(list.get(position).getGroceryName());
-        holder.textViewGroceryPrice.setText(list.get(position).getGroceryPrice());
+        holder.textViewGroceryPrice.setText(String.format("%d",list.get(position).getGroceryPrice()));
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return (null != list?list.size():0);
+    }
+
+    public void notifyData(ArrayList<ItemModel> myList) {
+        Log.d("notifyData ", myList.size() + "");
+        this.list = myList;
+        notifyDataSetChanged();
     }
 }
